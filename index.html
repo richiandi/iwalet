@@ -63,7 +63,7 @@ const M=[['Sarang walet','gram',1800],['Gula batu','gram',5000],['Jahe merah','g
 return{role:'staff',jar:60,P,M,R:{[M[0].id]:8,[M[1].id]:30,[M[3].id]:1,[M[4].id]:1},prod:[],sales:[],buys:[],lp:0}}
 S=seed();
 /* GANTI dengan URL Web App Apps Script Anda (berakhiran /exec) */
-const API_URL='PASTE_URL_WEB_APP_DI_SINI';
+const API_URL='https://script.google.com/macros/s/AKfycbyxc8TKVTCjkzcLpjvVL1B57rof7pUUREKJJFLME_VNtC2EsRk4eC7J34xXG_Y-sWZz/exec';
 const GS=(function(){function mk(ok,bad){return new Proxy({},{get(_,n){if(n==='withSuccessHandler')return f=>mk(f,bad);if(n==='withFailureHandler')return f=>mk(ok,f);return(...a)=>{if(API_URL.indexOf('/exec')<0){bad&&bad(new Error('API_URL belum diisi di index.html'));return}fetch(API_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({fn:n,args:a})}).then(r=>r.json()).then(r=>{if(r.error)throw new Error(r.error);ok&&ok(r.result)}).catch(e=>bad&&bad(e))}}})}return mk(null,null)})();let VER=0,pushing=false,again=false,tk={r:'staff',h:''};
 function push(){if(pushing){again=true;return}pushing=true;GS.withSuccessHandler(r=>{pushing=false;if(r.conflict){S=r.s;VER=r.v;render();toast('Data baru dari rekan tim. Ulangi input terakhir.')}else{VER=r.v;if(again){again=false;push()}}}).withFailureHandler(e=>{pushing=false;toast('Gagal menyimpan ke Sheet: '+e.message)}).saveState(JSON.stringify(S),VER,tk.r,tk.h)}
 const save=push;
