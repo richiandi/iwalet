@@ -68,7 +68,7 @@ const ST=['Proses','Pending','Terkirim'],CH=['Shopee','Tokopedia','Offline'],PC=
 let S,tab='home',flt='Semua',tmp={},show=false,per='bulan',ROLE='staff',lk=0;
 S=seed();
 /* GANTI dengan URL Web App Apps Script Anda (berakhiran /exec) */
-const API_URL='https://script.google.com/macros/s/AKfycbyxc8TKVTCjkzcLpjvVL1B57rof7pUUREKJJFLME_VNtC2EsRk4eC7J34xXG_Y-sWZz/exec';
+const API_URL='https://script.google.com/macros/s/AKfycbznDVr7gBfjN1_48Pn7JvpqqfZVH8WPvquDZoiBHbghQy76QXo-F1yYH85hB0K5JhV-/exec';
 const GS=(function(){function mk(ok,bad){return new Proxy({},{get(_,n){if(n==='withSuccessHandler')return f=>mk(f,bad);if(n==='withFailureHandler')return f=>mk(ok,f);return(...a)=>{if(API_URL.indexOf('/exec')<0){bad&&bad(new Error('API_URL belum diisi di index.html'));return}fetch(API_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({fn:n,args:a})}).then(r=>r.json()).then(r=>{if(r.error)throw new Error(r.error);ok&&ok(r.result)}).catch(e=>bad&&bad(e))}}})}return mk(null,null)})();let VER=0,base=null,dirty=false,syncing=false,net='ok',sk='stok',tk={r:'staff',h:''};
 const CK='byza_cache_v1',PK='byza_pins_v1',clone=x=>JSON.parse(JSON.stringify(x));
 const pc=()=>{try{return JSON.parse(localStorage.getItem(PK))||{}}catch(e){return{}}},pcs=(r,h)=>{try{const p=pc();p[r]=h;localStorage.setItem(PK,JSON.stringify(p))}catch(e){}};
